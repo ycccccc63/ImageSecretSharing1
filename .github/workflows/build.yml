@@ -1,0 +1,32 @@
+name: Build Image Secret Sharing EXE
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pillow numpy pyinstaller
+
+    - name: Build Executable
+      run: |
+        pyinstaller --noconsole --onefile --name="ImageSecretSharingApp" ImageSecretSharin.py
+
+    - name: Upload EXE
+      uses: actions/upload-artifact@v4
+      with:
+        name: ImageSecretSharing-EXE
+        path: dist/ImageSecretSharingApp.exe

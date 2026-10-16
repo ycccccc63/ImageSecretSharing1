@@ -23,7 +23,7 @@ jobs:
 
     - name: Build Executable
       run: |
-        pyinstaller --noconsole --onefile --name="ImageSecretSharingApp" ImageSecretSharin.py
+        pyinstaller --noconsole --onefile --name="ImageSecretSharingApp" ImageSecretSharing.py
 
     - name: Upload EXE
       uses: actions/upload-artifact@v4
